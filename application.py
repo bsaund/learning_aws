@@ -18,7 +18,7 @@ import json
 
 import flask
 from flask import request, Response
-from flask_bootstrap import Bootstrap
+# from flask_bootstrap import Bootstrap
 import boto3
 
 # from boto import dynamodb2
