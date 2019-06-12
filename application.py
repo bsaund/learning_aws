@@ -53,7 +53,8 @@ sns_conn = sns.connect_to_region(application.config['AWS_REGION'])
 @application.route('/')
 def welcome():
     theme = application.config['THEME']
-    return flask.render_template('index.html', theme=theme, flask_debug=application.debug)
+    return flask.render_template('index.html', theme=theme, flask_debug=application.debug,
+                                 imgfile="https://elasticbeanstalk-us-west-2-420806706158.s3-us-west-2.amazonaws.com/CHS_picture.png")
 
 
 @application.route('/signup', methods=['POST'])
