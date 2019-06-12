@@ -18,6 +18,7 @@ import json
 
 import flask
 from flask import request, Response
+import boto3
 
 # from boto import dynamodb2
 # from boto.dynamodb2.table import Table
