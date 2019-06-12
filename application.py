@@ -52,7 +52,7 @@ application.debug = application.config['FLASK_DEBUG'] in ['true', 'True']
 
 bucketname = "bsaund-testbucket"
 s3 = boto3.resource("s3")
-bucket = s3.Bucket(bucket)
+bucket = s3.Bucket(bucketname)
 summaries = bucket.objects.all()
 
 
