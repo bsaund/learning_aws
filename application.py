@@ -19,11 +19,11 @@ import json
 import flask
 from flask import request, Response
 
-from boto import dynamodb2
-from boto.dynamodb2.table import Table
-from boto.dynamodb2.items import Item
-from boto.dynamodb2.exceptions import ConditionalCheckFailedException
-from boto import sns
+# from boto import dynamodb2
+# from boto.dynamodb2.table import Table
+# from boto.dynamodb2.items import Item
+# from boto.dynamodb2.exceptions import ConditionalCheckFailedException
+# from boto import sns
 
 # Default config vals
 THEME = 'default' if os.environ.get('THEME') is None else os.environ.get('THEME')
@@ -41,13 +41,13 @@ application.config.from_envvar('APP_CONFIG', silent=True)
 # Only enable Flask debugging if an env var is set to true
 application.debug = application.config['FLASK_DEBUG'] in ['true', 'True']
 
-# Connect to DynamoDB and get ref to Table
-ddb_conn = dynamodb2.connect_to_region(application.config['AWS_REGION'])
-ddb_table = Table(table_name=application.config['STARTUP_SIGNUP_TABLE'],
-                  connection=ddb_conn)
+# # Connect to DynamoDB and get ref to Table
+# ddb_conn = dynamodb2.connect_to_region(application.config['AWS_REGION'])
+# ddb_table = Table(table_name=application.config['STARTUP_SIGNUP_TABLE'],
+#                   connection=ddb_conn)
 
-# Connect to SNS
-sns_conn = sns.connect_to_region(application.config['AWS_REGION'])
+# # Connect to SNS
+# sns_conn = sns.connect_to_region(application.config['AWS_REGION'])
 
 
 @application.route('/')
@@ -66,8 +66,10 @@ def signup():
     try:
         store_in_dynamo(signup_data)
         publish_to_sns(signup_data)
-    except ConditionalCheckFailedException:
+    except error:
         return Response("", status=409, mimetype='application/json')
+    # except ConditionalCheckFailedException:
+        
 
     return Response(json.dumps(signup_data), status=201, mimetype='application/json')
 
