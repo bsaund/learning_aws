@@ -60,7 +60,9 @@ summaries = bucket.objects.all()
 def welcome():
     theme = application.config['THEME']
     return flask.render_template('index.html', theme=theme, flask_debug=application.debug,
-                                 imgfile="https://elasticbeanstalk-us-west-2-420806706158.s3-us-west-2.amazonaws.com/CHS_picture.png")
+                                 imgfile="https://elasticbeanstalk-us-west-2-420806706158.s3-us-west-2.amazonaws.com/CHS_picture.png",
+                                 files=summaries,
+                                 bucket=bucket)
 
 
 @application.route('/signup', methods=['POST'])
