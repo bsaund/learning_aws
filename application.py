@@ -50,6 +50,8 @@ application.debug = application.config['FLASK_DEBUG'] in ['true', 'True']
 # # Connect to SNS
 # sns_conn = sns.connect_to_region(application.config['AWS_REGION'])
 
+s3 = boto3.resource("s3")
+
 
 @application.route('/')
 def welcome():
