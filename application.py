@@ -18,6 +18,7 @@ import json
 
 import flask
 from flask import request, Response
+from flask_bootstrap import Bootstrap
 import boto3
 
 # from boto import dynamodb2
@@ -32,6 +33,7 @@ FLASK_DEBUG = 'false' if os.environ.get('FLASK_DEBUG') is None else os.environ.g
 
 # Create the Flask app
 application = flask.Flask(__name__)
+Bootstrap(application)
 
 # Load config values specified above
 application.config.from_object(__name__)
