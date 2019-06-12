@@ -50,7 +50,10 @@ application.debug = application.config['FLASK_DEBUG'] in ['true', 'True']
 # # Connect to SNS
 # sns_conn = sns.connect_to_region(application.config['AWS_REGION'])
 
+bucketname = "bsaund-testbucket"
 s3 = boto3.resource("s3")
+bucket = s3.Bucket(bucket)
+summaries = bucket.objects.all()
 
 
 @application.route('/')
